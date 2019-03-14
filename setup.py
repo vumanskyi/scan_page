@@ -19,7 +19,6 @@ setup(
     name='scanpages',
     version=version['__version__'],
     description=('For simple debugger pages'),
-    long_description=long_description,
     author='Vlad Umanskyi',
     author_email='vladumanskyi@gmail.com',
     url='https://github.com/bast/somepackage',
