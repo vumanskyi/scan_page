@@ -16,20 +16,20 @@ class Scanpage:
     def get_page(self):
         return self.__page
 
-    def scan(self):
-        r = requests.get(self.__page)
+    def scan(self, params=None):
+        r = requests.get(self.__page, params)
 
         response = Response(r)
 
         return response.get_status_code()
 
-    def scan_from_file(self, filepath):
+    def scan_from_file(self, filepath, params=None):
         read = ImportData(filepath)
 
         data = read.readfile()
         from_file = {}
         for k, v in data.items():
-            r = requests.get(v)
+            r = requests.get(v, params)
 
             response = Response(r)
             from_file[k] = response.get_status_code()
@@ -42,13 +42,13 @@ class Scanpage:
     def get_filepath(self):
         return self.__filepath
 
-    def scan_import(self, filename):
+    def scan_import(self, filename, params=None):
         read = ImportData(self.get_filepath())
 
         data = read.readfile()
         from_file = {}
         for k, v in data.items():
-            r = requests.get(v)
+            r = requests.get(v, params)
 
             response = Response(r)
             from_file[k] = response.get_status_code()
@@ -56,6 +56,3 @@ class Scanpage:
         imp_data = Export(filename, from_file)
 
         return imp_data.import_data()
-
-
-
